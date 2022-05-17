@@ -1,24 +1,26 @@
 package kr.ac.kopo.member.dao;
 
+import kr.ac.kopo.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.kopo.member.vo.MemberVO;
-
 @Repository
-public class MemberDAOImpl implements MemberDAO {
-	
-	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+public class MemberDAOImpl  implements MemberDAO{
 
-	public MemberVO login(MemberVO member) {
-		
-		MemberVO userVO = sqlSessionTemplate.selectOne("member.MemberDAO.login", member);
-		
-		return userVO;
-	}
-	
-	
+    // 네임스페이스 변수로 지정 // 패키지명 명시
+    private String namespace = "member.MemberDAO.";
 
+    @Autowired
+    SqlSessionTemplate sqlSessionTemplate;
+
+    public MemberVO login(MemberVO memberVO) {
+
+
+        MemberVO userVO = sqlSessionTemplate.selectOne(namespace + "login" , memberVO);
+
+
+        return userVO;
+
+    }
 }
