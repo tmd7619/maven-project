@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 
+@SessionAttributes("userVO")
 @Controller
 public class MemberController2 {
 
@@ -35,6 +38,18 @@ public class MemberController2 {
 
 
         return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(SessionStatus sessionStatus) {
+        // SessionAttributes 어노테이션 사용 시, session.invalidate() 사용 불가
+        System.out.println("sessionStatus.isComplete : " + sessionStatus.isComplete());
+        sessionStatus.setComplete(); // isComplte 값을 false -> true 로 바꾸는 메서드
+        System.out.println("sessionStatus.isComplete : " + sessionStatus.isComplete());
+
+        return "redirect:/";
+
+
     }
 
 
