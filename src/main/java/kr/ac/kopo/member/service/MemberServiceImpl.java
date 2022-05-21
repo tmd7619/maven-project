@@ -2,14 +2,16 @@ package kr.ac.kopo.member.service;
 
 import kr.ac.kopo.member.dao.MemberDAO;
 import kr.ac.kopo.member.vo.MemberVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Autowired
-    MemberDAO memberDAO;
+    private final MemberDAO memberDAO;
+
+    public MemberServiceImpl(MemberDAO memberDAO) {
+        this.memberDAO = memberDAO;
+    }
 
     public MemberVO login(MemberVO memberVO) {
 

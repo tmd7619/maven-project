@@ -2,7 +2,6 @@ package kr.ac.kopo.member.controller;
 
 import kr.ac.kopo.member.service.MemberService;
 import kr.ac.kopo.member.vo.MemberVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +14,17 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MemberController2 {
 
-    @Autowired
-    private MemberService service;
+    // Field Injection
+//    @Autowired
+//    private MemberService service;
+
+    // Constructor Injection
+    private final MemberService service;
+
+    // 단일 생성자일 경우, @Autowired 생략 가능
+    public MemberController2(MemberService service) {
+        this.service = service;
+    }
 
 
     @GetMapping("/login") // 로그인 폼 불러오기
@@ -48,9 +56,5 @@ public class MemberController2 {
         System.out.println("sessionStatus.isComplete : " + sessionStatus.isComplete());
 
         return "redirect:/";
-
-
     }
-
-
 }
