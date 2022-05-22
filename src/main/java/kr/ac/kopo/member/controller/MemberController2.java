@@ -18,6 +18,15 @@ public class MemberController2 {
 //    @Autowired
 //    private MemberService service;
 
+
+//    // Setter Injection
+//    private MemberService service;
+//
+//    @Autowired
+//    public void setMemberService(MemberService memberService) {
+//        this.service = memberService;
+//    }
+
     // Constructor Injection
     private final MemberService service;
 

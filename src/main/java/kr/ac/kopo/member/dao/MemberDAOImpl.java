@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public class MemberDAOImpl implements MemberDAO {
 
     private final SqlSessionTemplate sqlSessionTemplate;
+
     // 네임스페이스 변수로 지정 // 패키지명 명시
     private String namespace = "member.MemberDAO.";
 

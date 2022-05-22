@@ -13,7 +13,7 @@
 	userVO : ${ sessionScope.userVO } <br>
 	<hr>
 
-	<a href="${pageContext.request.contextPath }/board">게시글</a>
+	<a href="${pageContext.request.contextPath }/board/list">게시글</a>
 	<a href="${pageContext.request.contextPath }/board/write">새글등록</a>
 	
 	<c:if test="${empty userVO }">
