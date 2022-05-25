@@ -21,4 +21,19 @@ public class BoardServiceImpl implements BoardService {
 
         return boardList;
     }
+
+    public String write(BoardVO boardVO) {
+
+        int check = boardDAO.write(boardVO);
+
+        if (check == 0) {
+            String msg = "등록에 실패하였습니다";
+            return msg;
+        } else {
+            String msg = "게시글 등록 성공";
+            return msg;
+
+        }
+
+    }
 }

@@ -43,7 +43,7 @@ public class BoardTest {
     public void 상세게시글조회Test() throws Exception {
 
         BoardVO board = sessionTemplate.selectOne("board.BoardDAO.selectByNo", 121);
-		
+
     }
 
 }

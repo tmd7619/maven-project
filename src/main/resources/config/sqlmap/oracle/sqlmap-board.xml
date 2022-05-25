@@ -16,4 +16,12 @@
 
     </select>
 
+    <insert id="writeForm" parameterType="boardVO">
+
+        insert into t_board(no,title,writer,content)
+        values(seq_t_board.nextval, #{title} , #{writer} , #{content} )
+
+
+    </insert>
+
 </mapper>

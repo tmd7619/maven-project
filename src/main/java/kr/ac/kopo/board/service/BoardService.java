@@ -7,4 +7,7 @@ import java.util.List;
 public interface BoardService {
 
     List<BoardVO> selectAllBoard();
+
+    String write(BoardVO boardVO);
+
 }

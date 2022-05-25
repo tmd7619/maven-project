@@ -23,4 +23,13 @@ public class BoardDAOImpl implements BoardDAO {
 
         return boardList;
     }
+
+    public int write(BoardVO boardVO) {
+
+        System.out.println("in dao writeBoard : " + boardVO);
+
+        int check = sqlSessionTemplate.insert(namespace + "writeForm");
+
+        return check;
+    }
 }

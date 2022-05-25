@@ -7,4 +7,6 @@ import java.util.List;
 public interface BoardDAO {
 
     List<BoardVO> selectAllBoard();
+
+    int write(BoardVO boardVO);
 }
