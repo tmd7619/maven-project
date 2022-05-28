@@ -32,8 +32,14 @@ public class BoardServiceImpl implements BoardService {
         } else {
             String msg = "게시글 등록 성공";
             return msg;
-
         }
 
+    }
+
+    public BoardVO detail(int no) {
+
+        BoardVO boardVO = boardDAO.detail(no);
+
+        return boardVO;
     }
 }

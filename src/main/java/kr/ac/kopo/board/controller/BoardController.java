@@ -5,6 +5,7 @@ import kr.ac.kopo.board.vo.BoardVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,9 @@ public class BoardController {
 
         List<BoardVO> boardList = service.selectAllBoard();
 
-        System.out.println("boardList ? :" + boardList);
+        for (BoardVO b : boardList) {
+            System.out.println(b);
+        }
 
         model.addAttribute("boardList", boardList);
 
@@ -51,5 +54,19 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+
+    @GetMapping("/detail/{no}")
+    public String detail(@PathVariable("no") int no, Model model) {
+        System.out.println("방 번호 넘어오는지? : " + no);
+
+        BoardVO boardVO = service.detail(no);
+
+        System.out.println("detail boardVo 넘어옴? : " + boardVO);
+
+        model.addAttribute("board", boardVO);
+
+
+        return "board/detail";
+    }
 
 }

@@ -32,4 +32,11 @@ public class BoardDAOImpl implements BoardDAO {
 
         return check;
     }
+
+    public BoardVO detail(int no) {
+
+        BoardVO boardVO = sqlSessionTemplate.selectOne(namespace + "detailBoard", no);
+
+        return boardVO;
+    }
 }

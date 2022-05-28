@@ -10,4 +10,6 @@ public interface BoardService {
 
     String write(BoardVO boardVO);
 
+    BoardVO detail(int no);
+
 }

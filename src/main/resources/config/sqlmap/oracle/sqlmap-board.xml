@@ -23,4 +23,12 @@
 
     </insert>
 
+    <select id="detailBoard" resultMap="boardMap">
+        select no, title, content, writer, to_char(reg_date, 'yyyy-mm-dd') as reg_date
+        from t_board
+        where no = #{no}
+
+    </select>
+
+
 </mapper>

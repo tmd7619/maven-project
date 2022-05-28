@@ -58,7 +58,7 @@
                 <tr <c:if test="${loop.index mod 2 ne 0 }"> class="odd"</c:if>>
                     <td><c:out value="${board.no }" /></td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/board/${board.no}"> <%--rest방식 사용 --%>
+                        <a href="${pageContext.request.contextPath}/board/detail/${board.no}"> <%--rest방식 사용 --%>
                                 <%-- 	<a href="${pageContext.request.contextPath}/board/detail?no=${board.no}">  --%>
                             <c:out value="${board.title }" />
                         </a>

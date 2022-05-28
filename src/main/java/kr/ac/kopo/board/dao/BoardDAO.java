@@ -9,4 +9,6 @@ public interface BoardDAO {
     List<BoardVO> selectAllBoard();
 
     int write(BoardVO boardVO);
+
+    BoardVO detail(int no);
 }
