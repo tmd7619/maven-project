@@ -7,6 +7,7 @@ public class BoardVO {
     private String content;
     private String writer;
     private String regDate;
+    private int viewCnt;
 
     public int getNo() {
         return no;
@@ -48,6 +49,14 @@ public class BoardVO {
         this.regDate = regDate;
     }
 
+    public int getViewCnt() {
+        return viewCnt;
+    }
+
+    public void setViewCnt(int viewCnt) {
+        this.viewCnt = viewCnt;
+    }
+
     @Override
     public String toString() {
         return "BoardVO{" +
@@ -56,6 +65,7 @@ public class BoardVO {
                 ", content='" + content + '\'' +
                 ", writer='" + writer + '\'' +
                 ", regDate='" + regDate + '\'' +
+                ", viewCnt=" + viewCnt +
                 '}';
     }
 }

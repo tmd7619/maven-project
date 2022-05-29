@@ -26,9 +26,9 @@ public class BoardController {
 
         List<BoardVO> boardList = service.selectAllBoard();
 
-        for (BoardVO b : boardList) {
-            System.out.println(b);
-        }
+//        for (BoardVO b : boardList) {
+//            System.out.println(b);
+//        }
 
         model.addAttribute("boardList", boardList);
 
@@ -67,6 +67,25 @@ public class BoardController {
 
 
         return "board/detail";
+    }
+
+    @GetMapping("/modifyForm/{no}")
+    public String modifyForm(@PathVariable("no") int no, Model model) {
+
+        System.out.println("in modifyForm no? :" + no);
+
+        BoardVO boardVO = service.detail(no);
+
+        model.addAttribute("board", boardVO);
+        return "board/modify";
+    }
+
+    @PostMapping("board/modify")
+    public String modify(BoardVO boardVO) {
+
+        System.out.println("modify form에서 넘어온 board? : " + boardVO);
+
+        return null;
     }
 
 }

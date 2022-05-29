@@ -21,7 +21,7 @@
 	})
 	
 	function modifyBoard(boardNo){
-			location.href = '${pageContext.request.contextPath}/modifyForm/'+boardNo;
+			location.href = 'modifyForm.jsp?no=' +boardNo ;
 	}
 	
 	function deleteBoard(boardNo){
@@ -58,18 +58,20 @@
 	<section>
 		<div align="center">
 		<hr width="80%">
-		<h2>게시판 상세</h2>
+		<h2>게시판 수정하기</h2>
 		<hr width="80%">
 		<br>
-		
+		<form action="/board/modify" method="post">
 		<table border="1" style="width: 80%">
 			<tr>
 				<th width="25%">번호</th>
 				<td><c:out value="${ board.no }" /></td>
+				<input type="hidden" value="${board.no}">
 			</tr>
 			<tr>
 				<th width="25%">제목</th>
-				<td><c:out value="${ board.title }" /></td>
+				<td><input name="title" type="text" value="${board.title}" required >
+				</td>
 			</tr>
 			<tr>
 				<th width="25%">작성자</th>
@@ -77,7 +79,9 @@
 			</tr>
 			<tr>
 				<th width="25%">내용</th>
-				<td><c:out value="${ board.content }" /></td>
+				<td><input name="content" type="text" value="${board.title}">
+				<td>
+				</td>
 			</tr>
 			<tr>
 				<th width="25%">조회수</th>
@@ -100,18 +104,16 @@
 				</td>
 			</tr>
 			
-		</table>
 		<br>
-		<button onclick="modifyBoard('${board.no}')">수정</button>
-		<button  onclick="deleteBoard('${board.no}')">삭제</button>
-		<button id="goListBtn">목록</button>
-		<%--button onclick="clickBtn('U')">수정</button> 교수님방법  --%> 
+		</table>
+		<input type="submit" value="수정하기">
+		<button  onclick="deleteBoard('${board.no}')">취소</button>
+		<button id="goListBtn">목록으로 돌아가기</button>
+		</form>
+		<%--button onclick="clickBtn('U')">수정</button> 교수님방법  --%>
 	</div>
 	<div style="text-align: center">
 	<hr>
-	댓글 : <input type="text" name="comment" />
-	작성자 : <input type="text" name="writer" />
-	<button>댓글등록</button>
 	</div>
 	</section>
 	<footer>
