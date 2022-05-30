@@ -7,11 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/board")
 @Controller
 public class BoardController {
 
@@ -21,7 +19,7 @@ public class BoardController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/board/list")
     public String selectAllBoard(Model model) {
 
         List<BoardVO> boardList = service.selectAllBoard();
@@ -36,14 +34,14 @@ public class BoardController {
 
     }
 
-    @GetMapping("/write") // spring 4.3 버전 이상 부터 사용 가능 // rest 방식
+    @GetMapping("/board/write") // spring 4.3 버전 이상 부터 사용 가능 // rest 방식
     public String writeForm(Model model) { // Spring form 태그를 사용하기 위해서는, 공유 영역에 객체를 등록해야한다. // BoardVO board로도 공유영역 객체 등록 가능
         // form태그의 속성 modelAttribute="객체명" 과 동일하게 설정해야함.
         model.addAttribute("boardVO", new BoardVO());
         return "board/write";
     }
 
-    @PostMapping("/write")
+    @PostMapping("/board/write")
     public String write(BoardVO boardVO, Model model) {
 
         System.out.println("writeForm에서 넘어온 boardVO? :" + boardVO);
@@ -55,7 +53,7 @@ public class BoardController {
     }
 
 
-    @GetMapping("/detail/{no}")
+    @GetMapping("/board/detail/{no}")
     public String detail(@PathVariable("no") int no, Model model) {
         System.out.println("방 번호 넘어오는지? : " + no);
 
@@ -69,10 +67,10 @@ public class BoardController {
         return "board/detail";
     }
 
-    @GetMapping("/modifyForm/{no}")
+    @GetMapping("/board/modifyForm/{no}")
     public String modifyForm(@PathVariable("no") int no, Model model) {
 
-        System.out.println("in modifyForm no? :" + no);
+        //    System.out.println("in modifyForm no? :" + no);
 
         BoardVO boardVO = service.detail(no);
 
@@ -80,12 +78,18 @@ public class BoardController {
         return "board/modify";
     }
 
-    @PostMapping("board/modify")
-    public String modify(BoardVO boardVO) {
+    @PostMapping("/board/modify")
+    public String modify(BoardVO boardVO, Model model) {
 
-        System.out.println("modify form에서 넘어온 board? : " + boardVO);
+        // System.out.println("modify form에서 넘어온 board? : " + boardVO);
 
-        return null;
+        BoardVO modifiedVO = service.modify(boardVO);
+
+        System.out.println(" 수정완료? modifiedVO ? : " + modifiedVO);
+
+        model.addAttribute("boardVO", modifiedVO);
+
+        return "redirect:/board/detail/" + modifiedVO.getNo();
     }
 
 }

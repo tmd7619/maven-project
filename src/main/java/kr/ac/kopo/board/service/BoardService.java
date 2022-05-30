@@ -12,4 +12,6 @@ public interface BoardService {
 
     BoardVO detail(int no);
 
+    BoardVO modify(BoardVO boardVO);
+
 }

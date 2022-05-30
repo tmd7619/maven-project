@@ -39,4 +39,11 @@ public class BoardDAOImpl implements BoardDAO {
 
         return boardVO;
     }
+
+    public int modfiy(BoardVO boardVO) {
+
+        int check = sqlSessionTemplate.update(namespace + "modify", boardVO);
+
+        return check;
+    }
 }

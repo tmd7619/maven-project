@@ -42,4 +42,17 @@ public class BoardServiceImpl implements BoardService {
 
         return boardVO;
     }
+
+    public BoardVO modify(BoardVO boardVO) {
+
+        int check = boardDAO.modfiy(boardVO);
+
+        if (check == 1) {
+            BoardVO modifiedVO = boardDAO.detail(boardVO.getNo());
+            return modifiedVO;
+        } else {
+            return null;
+        }
+
+    }
 }

@@ -66,7 +66,7 @@
 			<tr>
 				<th width="25%">번호</th>
 				<td><c:out value="${ board.no }" /></td>
-				<input type="hidden" value="${board.no}">
+				<input type="hidden" name="no" value="${board.no}">
 			</tr>
 			<tr>
 				<th width="25%">제목</th>

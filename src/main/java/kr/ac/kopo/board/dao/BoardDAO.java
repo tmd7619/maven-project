@@ -11,4 +11,6 @@ public interface BoardDAO {
     int write(BoardVO boardVO);
 
     BoardVO detail(int no);
+
+    int modfiy(BoardVO boardVO);
 }

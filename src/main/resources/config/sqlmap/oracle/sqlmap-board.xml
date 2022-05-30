@@ -31,5 +31,10 @@
 
     </select>
 
+    <update id="modify" parameterType="boardVO">
+        update t_board set title = #{title} , content = #{content}
+            where no = #{no}
+
+    </update>
 
 </mapper>

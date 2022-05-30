@@ -21,7 +21,7 @@
 	})
 	
 	function modifyBoard(boardNo){
-			location.href = '${pageContext.request.contextPath}/modifyForm/'+boardNo;
+			location.href = '${pageContext.request.contextPath}/board/modifyForm/'+boardNo;
 	}
 	
 	function deleteBoard(boardNo){
