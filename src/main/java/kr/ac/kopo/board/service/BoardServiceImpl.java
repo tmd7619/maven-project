@@ -53,6 +53,11 @@ public class BoardServiceImpl implements BoardService {
         } else {
             return null;
         }
+    }
+
+    public void delete(BoardVO boardVO) {
+
+        boardDAO.delete(boardVO);
 
     }
 }

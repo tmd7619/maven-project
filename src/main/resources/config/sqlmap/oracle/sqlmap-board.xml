@@ -34,7 +34,12 @@
     <update id="modify" parameterType="boardVO">
         update t_board set title = #{title} , content = #{content}
             where no = #{no}
-
     </update>
+
+    <delete id="delete" parameterType="boardVO">
+        delete from t_board where no = #{no}
+
+    </delete>
+
 
 </mapper>

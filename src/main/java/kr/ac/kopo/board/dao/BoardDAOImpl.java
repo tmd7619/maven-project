@@ -46,4 +46,11 @@ public class BoardDAOImpl implements BoardDAO {
 
         return check;
     }
+
+
+    public void delete(BoardVO boardVO) {
+
+        int check = sqlSessionTemplate.delete(namespace + "delete", boardVO);
+
+    }
 }

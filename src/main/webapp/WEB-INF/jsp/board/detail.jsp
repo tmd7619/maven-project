@@ -26,7 +26,7 @@
 	
 	function deleteBoard(boardNo){
 		if(confirm('정말 삭제하시겠습니까?'))
-			location.href = 'delete.jsp?no=' +boardNo ;
+			location.href = '${pageContext.request.contextPath}/board/delete?no='+ boardNo;
 	}
 	
 	/*

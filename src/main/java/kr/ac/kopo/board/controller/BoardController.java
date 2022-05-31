@@ -92,4 +92,15 @@ public class BoardController {
         return "redirect:/board/detail/" + modifiedVO.getNo();
     }
 
+
+    @GetMapping("/board/delete")
+    public String delete(BoardVO boardVO) {
+
+        System.out.println("in delete boardVo 넘버 넘어옴 ? : " + boardVO);
+
+        service.delete(boardVO);
+
+        return "redirect:/board/list";
+    }
+
 }

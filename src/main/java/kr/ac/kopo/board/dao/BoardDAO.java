@@ -13,4 +13,7 @@ public interface BoardDAO {
     BoardVO detail(int no);
 
     int modfiy(BoardVO boardVO);
+
+    void delete(BoardVO boardVO);
+
 }
