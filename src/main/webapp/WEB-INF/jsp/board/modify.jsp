@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board.css"/>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	
 	$(document).ready(function(){
 		
 		$('#goListBtn').click(function(){

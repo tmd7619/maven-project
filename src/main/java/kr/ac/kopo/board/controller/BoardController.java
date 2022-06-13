@@ -45,6 +45,11 @@ public class BoardController {
     public String write(BoardVO boardVO, Model model) {
 
         System.out.println("writeForm에서 넘어온 boardVO? :" + boardVO);
+
+        boardVO.setWriter(boardVO.getWriter().replace(",", ""));
+
+        System.out.println(", 없앤 boardVO? : " + boardVO);
+
         String msg = service.write(boardVO);
 
         model.addAttribute("writeMsg", msg);
@@ -67,6 +72,7 @@ public class BoardController {
         return "board/detail";
     }
 
+    // GET 방식 중 RESTful하게 이용하는 방식
     @GetMapping("/board/modifyForm/{no}")
     public String modifyForm(@PathVariable("no") int no, Model model) {
 
@@ -92,7 +98,7 @@ public class BoardController {
         return "redirect:/board/detail/" + modifiedVO.getNo();
     }
 
-
+    // GET 방식 중, 쿼리 스트링을 적용한 방식 ex) '~/delete?no=' + no
     @GetMapping("/board/delete")
     public String delete(BoardVO boardVO) {
 

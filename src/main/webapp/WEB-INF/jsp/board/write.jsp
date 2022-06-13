@@ -29,6 +29,9 @@
 		})
 	})
 
+	console.log('${sessionScope.userVO.name}');
+
+
 </script>
 </head>
 <body>
@@ -53,7 +56,9 @@
 				<tr>
 					<th>작성자</th>
 					<td>
-						<form:input path="writer" />
+						<c:out value="${sessionScope.userVO.name}"/>
+						<input type="hidden" value="${userVO.name}" name="writer"/>
+						<form:hidden path="writer"/>
 						<form:errors path="writer" class="error"/>
 					</td>
 				</tr>

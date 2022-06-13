@@ -12,7 +12,7 @@
     <script>
         $(document).ready(function() {
             $('#addBtn').click(function() {
-                location.href = "write.jsp" // location 객체에 url정보가 담겨져 있다.
+                location.href = "${pageContext.request.contextPath}/board/write";  // location 객체에 url정보가 담겨져 있다.
             })
         })
 
