@@ -7,6 +7,7 @@
     <resultMap id="boardMap" type="boardVO">
         <result column="reg_date" property="regDate"/>
         <result column="view_cnt" property="viewCnt"/>
+        <result column="t_comment" property="comment"/>
     </resultMap>
 
 

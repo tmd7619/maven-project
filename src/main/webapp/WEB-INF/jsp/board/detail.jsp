@@ -107,15 +107,53 @@
 		<button id="goListBtn">목록</button>
 		<%--button onclick="clickBtn('U')">수정</button> 교수님방법  --%> 
 	</div>
-	<div style="text-align: center">
 	<hr>
-	댓글 : <input type="text" name="comment" />
-	작성자 : <input type="text" name="writer" />
-	<button>댓글등록</button>
+	<div style="text-align: center">
+		<form name="commentForm">
+			댓글 : <input type="text" name="comment" id="comment">
+			작성자 : <input readonly name="writer" value="${userVO.name}" id="writer" />
+			<input type="hidden" value="${board.no}" id="no"/>
+			<button id="comment_button" >댓글등록</button>
+		</form>
+		<div id="comment_list">
+		</div>
 	</div>
 	</section>
 	<footer>
 		<%-- <%@ include file="/jsp/include/bottom.jsp" %>  --%><%-- include는 경로가 프로젝트명(Mission-Web) 다음으로 정의됨 !!! --%>
 	</footer>
+<script>
+	var comment;
+	var writer;
+	var no;
+	var data;
+	$('#comment_button').on('click', function(){
+		comment = $('#comment').val()
+		writer = $('#writer').val()
+		no = $('#no').val()
+
+		data = {"comment" : comment, "writer" : writer, "no" : no };
+		console.log(data)
+		$.ajax({
+			type : 'POST' ,
+			url : '/board/comment' ,
+			data : JSON.stringify(data),
+			dataType : 'json' ,
+			contentType: 'application/json',
+			success : function(res){
+				$('#comment_list').empty();
+				$('#comment_list').append(res);
+
+			},
+			error : function(xhr, status, error){
+				alert(error);
+			}
+		})
+
+
+	})
+
+
+</script>
 </body>
 </html>

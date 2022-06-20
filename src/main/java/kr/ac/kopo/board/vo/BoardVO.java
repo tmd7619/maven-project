@@ -8,6 +8,8 @@ public class BoardVO {
     private String writer;
     private String regDate;
     private int viewCnt;
+    private String comment;
+
 
     public int getNo() {
         return no;
@@ -57,6 +59,14 @@ public class BoardVO {
         this.viewCnt = viewCnt;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "BoardVO{" +
@@ -66,6 +76,7 @@ public class BoardVO {
                 ", writer='" + writer + '\'' +
                 ", regDate='" + regDate + '\'' +
                 ", viewCnt=" + viewCnt +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }
