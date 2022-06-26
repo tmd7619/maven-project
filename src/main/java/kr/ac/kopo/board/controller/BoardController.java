@@ -2,7 +2,9 @@ package kr.ac.kopo.board.controller;
 
 import com.google.gson.Gson;
 import kr.ac.kopo.board.service.BoardService;
+import kr.ac.kopo.board.service.CommentService;
 import kr.ac.kopo.board.vo.BoardVO;
+import kr.ac.kopo.board.vo.CommentVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +18,17 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    private BoardService service;
+    private BoardService boardService;
+    private CommentService commentService;
 
     public BoardController(BoardService service) {
-        this.service = service;
+        this.boardService = service;
     }
 
     @GetMapping("/board/list")
     public String selectAllBoard(Model model) {
 
-        List<BoardVO> boardList = service.selectAllBoard();
+        List<BoardVO> boardList = boardService.selectAllBoard();
 
 //        for (BoardVO b : boardList) {
 //            System.out.println(b);
@@ -53,7 +56,7 @@ public class BoardController {
 
         System.out.println(", 없앤 boardVO? : " + boardVO);
 
-        String msg = service.write(boardVO);
+        String msg = boardService.write(boardVO);
 
         model.addAttribute("writeMsg", msg);
 
@@ -65,7 +68,7 @@ public class BoardController {
     public String detail(@PathVariable("no") int no, Model model) {
         System.out.println("방 번호 넘어오는지? : " + no);
 
-        BoardVO boardVO = service.detail(no);
+        BoardVO boardVO = boardService.detail(no);
 
         System.out.println("detail boardVo 넘어옴? : " + boardVO);
 
@@ -81,7 +84,7 @@ public class BoardController {
 
         //    System.out.println("in modifyForm no? :" + no);
 
-        BoardVO boardVO = service.detail(no);
+        BoardVO boardVO = boardService.detail(no);
 
         model.addAttribute("board", boardVO);
         return "board/modify";
@@ -92,7 +95,7 @@ public class BoardController {
 
         // System.out.println("modify form에서 넘어온 board? : " + boardVO);
 
-        BoardVO modifiedVO = service.modify(boardVO);
+        BoardVO modifiedVO = boardService.modify(boardVO);
 
         System.out.println(" 수정완료? modifiedVO ? : " + modifiedVO);
 
@@ -107,23 +110,27 @@ public class BoardController {
 
         System.out.println("in delete boardVo 넘버 넘어옴 ? : " + boardVO);
 
-        service.delete(boardVO);
+        boardService.delete(boardVO);
 
         return "redirect:/board/list";
     }
 
     @PostMapping("/board/comment")
     public ModelAndView addComment(@RequestBody String msg) {
+        // @RequestBody를 쓸때, 무엇 때문이지 vo로 받아올 수 없다.(Mapping error) -> 이유 찾아보기
 
+        ModelAndView mav = new ModelAndView();
         System.out.println("ajax string으로 받은 내용? : " + msg);
 
         Gson gson = new Gson();
-        BoardVO boardVO = gson.fromJson(msg, BoardVO.class);
+        CommentVO commentVO = gson.fromJson(msg, CommentVO.class);
 
-        ModelAndView mav = new ModelAndView();
-        System.out.println("ajax로 넘어온 comment 내용? : " + boardVO);
+        List<CommentVO> commentList = commentService.writeComment(commentVO);
 
+        for (CommentVO c : commentList)
+            System.out.println("write 후 저장된 commentList 불러오기 : " + c);
 
+        mav.addObject("commentList", commentList);
         return mav;
 
     }

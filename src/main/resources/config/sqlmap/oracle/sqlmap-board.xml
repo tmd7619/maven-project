@@ -7,7 +7,11 @@
     <resultMap id="boardMap" type="boardVO">
         <result column="reg_date" property="regDate"/>
         <result column="view_cnt" property="viewCnt"/>
-        <result column="t_comment" property="comment"/>
+    </resultMap>
+
+    <resultMap id="commentMap" type="commentVO">
+        <result column="reg_date" property="redData"/>
+
     </resultMap>
 
 
@@ -41,6 +45,18 @@
         delete from t_board where no = #{no}
 
     </delete>
+
+    <select id="selectComment" resultMap="commentMap">
+        select no, content, writer, to_char(reg_date, 'yyyy-mm-dd') as reg_date
+        from t_comment
+        where no = #{no}
+    </select>
+
+    <insert id="writeComment" parameterType="commentVO">
+        insert into t_comment(no,content,writer)
+        values(no,#{content},#{writer})
+
+    </insert>
 
 
 </mapper>

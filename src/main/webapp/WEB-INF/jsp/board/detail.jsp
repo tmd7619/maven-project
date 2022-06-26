@@ -132,14 +132,14 @@
 		writer = $('#writer').val()
 		no = $('#no').val()
 
-		data = {"comment" : comment, "writer" : writer, "no" : no };
+		data = {"content" : comment, "writer" : writer, "no" : no };
 		console.log(data)
 		$.ajax({
-			type : 'POST' ,
+			type : 'post' ,
 			url : '/board/comment' ,
 			data : JSON.stringify(data),
 			dataType : 'json' ,
-			contentType: 'application/json',
+			contentType : 'application/json',
 			success : function(res){
 				$('#comment_list').empty();
 				$('#comment_list').append(res);
