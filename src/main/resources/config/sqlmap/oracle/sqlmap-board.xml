@@ -10,7 +10,7 @@
     </resultMap>
 
     <resultMap id="commentMap" type="commentVO">
-        <result column="reg_date" property="redData"/>
+        <result column="reg_date" property="regData"/>
 
     </resultMap>
 

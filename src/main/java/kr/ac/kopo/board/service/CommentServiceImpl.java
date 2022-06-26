@@ -10,10 +10,15 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-    CommentDAO commentDAO;
+    private CommentDAO commentDAO;
+
+    public CommentServiceImpl(CommentDAO commentDAO) {
+        this.commentDAO = commentDAO;
+    }
 
     public List<CommentVO> writeComment(CommentVO commentVO) {
 
+        System.out.println("in CommentServiceImpl : " + commentVO);
         List<CommentVO> commentList = commentDAO.writeComment(commentVO);
 
         return commentList;

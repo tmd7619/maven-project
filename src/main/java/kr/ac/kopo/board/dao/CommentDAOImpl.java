@@ -10,8 +10,12 @@ import java.util.List;
 public class CommentDAOImpl implements CommentDAO {
 
 
-    SqlSessionTemplate sqlSessionTemplate;
-    private String namespace = "board.CommentDAO.";
+    private SqlSessionTemplate sqlSessionTemplate;
+    private String namespace = "kr.ac.kopo.board.dao.CommentDAO.";
+
+    public CommentDAOImpl(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }
 
     public List<CommentVO> selectComment(int no) {
 
@@ -24,15 +28,15 @@ public class CommentDAOImpl implements CommentDAO {
     public List<CommentVO> writeComment(CommentVO commentVO) {
 
         System.out.println("in dao commentVO : " + commentVO);
-        List<CommentVO> commentList;
-        int check = sqlSessionTemplate.insert(namespace + "writeComment", commentVO);
-
-        if (check == 1) {
-            System.out.println("insert comment 성공");
-            commentList = selectComment(commentVO.getNo()); // 비동기 처리를 위해, insert 후 바로 select
-        } else {
-            return null;
+        try {
+            sqlSessionTemplate.insert(namespace + "writeComment", commentVO);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        System.out.println("insert comment 성공");
+        List<CommentVO> commentList = selectComment(commentVO.getNo()); // 비동기 처리를 위해, insert 후 바로 select
+
         return commentList;
     }
 

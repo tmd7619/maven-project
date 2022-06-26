@@ -18,11 +18,12 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    private BoardService boardService;
-    private CommentService commentService;
+    private final BoardService boardService;
+    private final CommentService commentService;
 
-    public BoardController(BoardService service) {
+    public BoardController(BoardService service, CommentService commentService) {
         this.boardService = service;
+        this.commentService = commentService;
     }
 
     @GetMapping("/board/list")
@@ -124,6 +125,7 @@ public class BoardController {
 
         Gson gson = new Gson();
         CommentVO commentVO = gson.fromJson(msg, CommentVO.class);
+        System.out.println("msg to commentVO :" + commentVO);
 
         List<CommentVO> commentList = commentService.writeComment(commentVO);
 

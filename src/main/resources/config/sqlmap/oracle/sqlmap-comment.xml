@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.kopo.board.dao.CommentDAO"><!--  패키지명(fullname) 적어도 됨 // 보통 적는 것이 보편적-->
+    <resultMap id="commentMap" type="commentVO">
+        <result column="reg_date" property="regDate"/>
+    </resultMap>
+
+    <select id="selectComment" resultMap="commentMap">
+        select no, content, writer, to_char(reg_date, 'yyyy-mm-dd') as reg_date
+        from t_comment
+        where no = #{no}
+    </select>
+
+    <insert id="writeComment" parameterType="commentVO">
+        insert into t_comment(no,content,writer)
+        values(#{no},#{content},#{writer})
+
+    </insert>
+
+
+</mapper>
