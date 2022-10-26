@@ -27,7 +27,6 @@ public class BoardTest {
 
     @Autowired
     private SqlSessionTemplate sessionTemplate;
-
     //@Ignore
     @Test
     public void 전체게시글조회Test() throws Exception {
